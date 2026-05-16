@@ -68,7 +68,7 @@ export function Dashboard({
   }, [genreFilter, activeMoodGenres]);
 
   const prefixIndex = useMemo(() => {
-    return new PrefixIndex(entries.map(e => e.title));
+    return new PrefixIndex(entries.map(e => e.title).filter(Boolean));
   }, [entries]);
 
   const { currentlyWatching, recentlyCompleted, wantToWatch } = useMemo(() => {
@@ -681,45 +681,47 @@ export function Dashboard({
           )}
         </div>
       </div>
-    </div>
 
-    {/* Timeline Section */}
-          <WatchTimeline entries={entries} onSelect={onSelect} />
+      {/* Timeline Section */}
+      <WatchTimeline entries={entries} onSelect={onSelect} />
 
-          {/* Activity Feed */}
-          <section className="space-y-8">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-neon-green/10 border border-neon-green/20 shadow-lg">
-                <Sparkles className="w-6 h-6 text-neon-green" />
-              </div>
-              <h3 className="text-2xl font-black text-white uppercase tracking-tight font-display">Recent Activity</h3>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {activities.map((activity, i) => (
-                <motion.div
-                  key={activity.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  onClick={() => onSelect(activity)}
-                  className="group bg-zinc-900/30 border border-white/5 p-6 rounded-[2rem] cursor-pointer hover:bg-zinc-900/50 transition-all flex items-center gap-6"
-                >
-                  <div className="w-16 h-24 rounded-xl overflow-hidden shrink-0 border border-white/10">
-                    <Poster entry={activity} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+      {/* Activity Feed */}
+      <section className="space-y-8">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-neon-green/10 border border-neon-green/20 shadow-lg">
+            <Sparkles className="w-6 h-6 text-neon-green" />
+          </div>
+          <h3 className="text-2xl font-black text-white uppercase tracking-tight font-display">Recent Activity</h3>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {activities.map((activity, i) => {
+            const dateStr = activity.watchedDate ? new Date(activity.watchedDate).toLocaleDateString() : 'N/A';
+            return (
+              <motion.div
+                key={activity.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1 }}
+                onClick={() => onSelect(activity)}
+                className="group bg-zinc-900/30 border border-white/5 p-6 rounded-[2rem] cursor-pointer hover:bg-zinc-900/50 transition-all flex items-center gap-6"
+              >
+                <div className="w-16 h-24 rounded-xl overflow-hidden shrink-0 border border-white/10">
+                  <Poster entry={activity} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                </div>
+                <div className="space-y-2">
+                  <p className="text-[8px] font-black text-neon-green uppercase tracking-widest">Just Watched</p>
+                  <h4 className="text-sm font-black text-white uppercase tracking-tight line-clamp-1">{activity.title}</h4>
+                  <div className="flex items-center gap-2">
+                    <StarRating rating={activity.myRating} size={10} />
+                    <span className="text-[10px] font-bold text-gray-500">{dateStr}</span>
                   </div>
-                  <div className="space-y-2">
-                    <p className="text-[8px] font-black text-neon-green uppercase tracking-widest">Just Watched</p>
-                    <h4 className="text-sm font-black text-white uppercase tracking-tight line-clamp-1">{activity.title}</h4>
-                    <div className="flex items-center gap-2">
-                      <StarRating rating={activity.myRating} size={10} />
-                      <span className="text-[10px] font-bold text-gray-500">{new Date(activity.watchedDate || '').toLocaleDateString()}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </section>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 }

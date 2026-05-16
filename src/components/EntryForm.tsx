@@ -47,7 +47,7 @@ export function EntryForm({ entry, allEntries = [], onSave, onDelete, onCancel }
   // Initialize Prefix Index for instant suggestions
   const prefixIndex = React.useMemo(() => {
     const localTitles = allEntries.map(e => e.title);
-    return new PrefixIndex([...new Set([...localTitles, ...POPULAR_TITLES])]);
+    return new PrefixIndex([...new Set([...localTitles, ...POPULAR_TITLES])].filter(Boolean));
   }, [allEntries]);
 
   const [formData, setFormData] = useState<Partial<Entry>>({

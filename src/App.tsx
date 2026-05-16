@@ -171,20 +171,17 @@ export default function App() {
           setEntries(SAMPLE_DATA);
         }
       }
-      } catch (error: any) {
-        console.error("Critical error in loadAllData:", error);
-        // Ensure we don't stay in loading state forever
-        setAuthLoading(false);
-        if (error.message?.includes('permission') || error.code === 'permission-denied') {
-          alert("⚠️ Could not load your data from the Cloud: Firebase Firestore Permissions Denied.");
-        } else {
-          console.warn("Falling back to local data due to error");
-          setEntries(SAMPLE_DATA);
-        }
-      } finally {
-        setAuthLoading(false);
-        console.log("Initialization complete. Entries count:", entries.length);
+    } catch (error: any) {
+      console.error("Critical error in loadAllData:", error);
+      if (error.message?.includes('permission') || error.code === 'permission-denied') {
+        alert("⚠️ Could not load your data from the Cloud: Firebase Firestore Permissions Denied.");
+      } else {
+        console.warn("Falling back to local data due to error");
+        setEntries(SAMPLE_DATA);
       }
+    } finally {
+      setAuthLoading(false);
+    }
     };
 
     loadAllData();
@@ -415,8 +412,34 @@ export default function App() {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-white/10 border-t-white rounded-full animate-spin" />
+      <div className="min-h-screen bg-black flex flex-col items-center justify-center space-y-8 relative overflow-hidden">
+        {/* Cinematic Background Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.15),transparent_70%)] animate-pulse" />
+        
+        <div className="relative">
+          <motion.div 
+            animate={{ 
+              rotate: 360,
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ 
+              rotate: { duration: 4, repeat: Infinity, ease: "linear" },
+              scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+            }}
+            className="w-24 h-24 rounded-[2.5rem] bg-gradient-to-tr from-blue-600 to-purple-600 blur-2xl opacity-50 absolute inset-0"
+          />
+          <div className="w-24 h-24 bg-zinc-900 border border-white/10 rounded-[2.5rem] flex items-center justify-center relative shadow-2xl">
+            <Film className="w-10 h-10 text-blue-500 animate-pulse" />
+          </div>
+        </div>
+
+        <div className="text-center space-y-2 relative z-10">
+          <h2 className="text-2xl font-black text-white uppercase tracking-tighter font-display">Aura CineTrack</h2>
+          <div className="flex items-center justify-center gap-3">
+            <Loader2 className="w-4 h-4 animate-spin text-blue-500" />
+            <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]">Syncing Cinematic Universe...</p>
+          </div>
+        </div>
       </div>
     );
   }

@@ -16,7 +16,7 @@ interface QuickLogProps {
 export function QuickLog({ onSave, allEntries = [] }: QuickLogProps) {
   const prefixIndex = React.useMemo(() => {
     const localTitles = allEntries.map(e => e.title);
-    return new PrefixIndex([...new Set([...localTitles, ...POPULAR_TITLES])]);
+    return new PrefixIndex([...new Set([...localTitles, ...POPULAR_TITLES])].filter(Boolean));
   }, [allEntries]);
 
   const [isOpen, setIsOpen] = useState(false);

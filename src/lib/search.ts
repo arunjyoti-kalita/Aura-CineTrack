@@ -48,6 +48,7 @@ export class PrefixIndex {
 
   constructor(titles: string[]) {
     titles.forEach(title => {
+      if (!title || typeof title !== 'string') return;
       const words = title.toLowerCase().split(/\s+/);
       words.forEach(word => {
         // Index every prefix up to 5 characters

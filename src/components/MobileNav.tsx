@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { LayoutGrid, History, BarChart3, Plus } from 'lucide-react';
+import { LayoutGrid, History as HistoryIcon, BarChart3, Plus } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 interface MobileNavProps {
@@ -12,7 +12,7 @@ interface MobileNavProps {
 export function MobileNav({ activeTab, onTabChange, onAddClick }: MobileNavProps) {
   const tabs = [
     { id: 'dashboard', icon: LayoutGrid, label: 'Home' },
-    { id: 'timeline', icon: History, label: 'Timeline' },
+    { id: 'timeline', icon: HistoryIcon, label: 'Timeline' },
     { id: 'stats', icon: BarChart3, label: 'Stats' },
   ];
 
