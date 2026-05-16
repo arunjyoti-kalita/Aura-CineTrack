@@ -13,7 +13,7 @@ import {
   Plus,
   Loader2,
   Search,
-  ImageIcon,
+  Image as ImageIcon,
   History as HistoryIcon
 } from 'lucide-react';
 import { StarRating } from './StarRating';

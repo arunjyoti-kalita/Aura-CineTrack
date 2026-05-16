@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Plus, 
-  List, 
+  List as ListIcon, 
   Trash2, 
   ChevronRight, 
   Film, 
@@ -174,7 +174,7 @@ export const CustomLists: React.FC<CustomListsProps> = ({
                   className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg"
                   style={{ backgroundColor: `${list.color}20`, border: `1px solid ${list.color}` }}
                 >
-                  <List className="w-6 h-6" style={{ color: list.color }} />
+                  <ListIcon className="w-6 h-6" style={{ color: list.color }} />
                 </div>
                 <div className="text-right">
                   <span className="text-2xl font-black text-white">{list.entryIds.length}</span>

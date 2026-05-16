@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Dashboard } from './components/Dashboard';
 import { Entry, Goal, CustomList } from './types';
-import { Trophy, Film, Calendar, Sparkles, User, LogOut, LayoutDashboard, Bookmark, Plus, Book, Target, Globe, TrendingUp, List, Database, Image as ImageIcon } from 'lucide-react';
+import { Trophy, Film, Calendar, Sparkles, User, LogOut, LayoutDashboard, Bookmark, Plus, Book, Target, Globe, TrendingUp, List as ListIcon, Database, Image as ImageIcon } from 'lucide-react';
 import { cn } from './lib/utils';
 import { QuickLog } from './components/QuickLog';
 import { CinematicWrapped } from './components/CinematicWrapped';
