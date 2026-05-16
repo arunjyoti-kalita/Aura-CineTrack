@@ -9,7 +9,7 @@ import {
   Info,
   Plus,
   Tag,
-  History,
+  History as HistoryIcon,
   MapPin,
   ExternalLink,
   Search,
@@ -709,7 +709,7 @@ export function EntryForm({ entry, allEntries = [], onSave, onDelete, onCancel }
           <div className="space-y-6 bg-zinc-900/30 p-10 rounded-[2rem] border border-white/5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <History className="w-5 h-5 text-neon-green" />
+                <HistoryIcon className="w-5 h-5 text-neon-green" />
                 <h3 className="text-xl font-black text-white uppercase tracking-tight font-display">Watch History</h3>
               </div>
               <button

@@ -16,7 +16,10 @@ export function Poster({ entry, className, alt }: PosterProps) {
   useEffect(() => {
     if (!entry) return;
     // If we have no poster from the entry and haven't fetched one locally yet
-    if (!entry.posterUrl && !poster) {
+    const isPlaceholder = !entry.posterUrl || entry.posterUrl.includes('picsum.photos');
+    const currentlyShowingPlaceholder = !poster || poster.includes('picsum.photos');
+    
+    if (isPlaceholder && currentlyShowingPlaceholder) {
       const fetchPoster = async () => {
         try {
           const omdbKey = import.meta.env.VITE_OMDB_API_KEY;

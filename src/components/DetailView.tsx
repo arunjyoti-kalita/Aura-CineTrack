@@ -13,7 +13,7 @@ import {
   Share2,
   Edit3,
   Bookmark,
-  History,
+  History as HistoryIcon,
   Tag,
   Search,
   Plus,
@@ -237,7 +237,7 @@ export function DetailView({ entry, lists, onClose, onEdit, onUpdateReview, onTo
                   {entry.watchHistory.map((session, i) => (
                     <div key={i} className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5">
                       <div className="flex items-center gap-4">
-                        <History className="w-4 h-4 text-neon-green" />
+                        <HistoryIcon className="w-4 h-4 text-neon-green" />
                         <span className="text-xs font-bold text-white">{new Date(session.date).toLocaleDateString()}</span>
                       </div>
                       <StarRating rating={session.rating} size={12} />

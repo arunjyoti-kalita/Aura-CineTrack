@@ -13,7 +13,8 @@ import {
   Plus,
   Loader2,
   Search,
-  ImageIcon
+  ImageIcon,
+  History as HistoryIcon
 } from 'lucide-react';
 import { StarRating } from './StarRating';
 import { Entry } from '../types';
@@ -314,7 +315,7 @@ export const EntryCard: React.FC<EntryCardProps> = ({ entry, onEdit, onUpdate, o
                 </div>
                 {entry.watchHistory && entry.watchHistory.length > 0 && (
                   <div className="flex items-center gap-1 text-neon-green">
-                    <History className="w-3 h-3" />
+                    <HistoryIcon className="w-3 h-3" />
                     <span className="text-[10px] font-black">{entry.watchHistory.length + 1}x</span>
                   </div>
                 )}
