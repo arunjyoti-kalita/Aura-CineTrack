@@ -4,6 +4,8 @@ import App from './App.tsx';
 import './index.css';
 import * as Icons from 'lucide-react';
 
+import {ErrorBoundary} from './components/ErrorBoundary';
+
 // Diagnostic for 'Illegal constructor' errors caused by icon namespace collisions
 Object.keys(Icons).forEach(key => {
   if ((window as any)[key]) {
@@ -13,6 +15,8 @@ Object.keys(Icons).forEach(key => {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </StrictMode>,
 );

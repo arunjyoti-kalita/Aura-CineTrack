@@ -745,8 +745,7 @@ export default function App() {
   };
 
     return (
-      <ErrorBoundary>
-        <div className="min-h-screen bg-black text-gray-100 font-sans selection:bg-blue-500 selection:text-white flex">
+      <div className="min-h-screen bg-black text-gray-100 font-sans selection:bg-blue-500 selection:text-white flex">
       {/* Toast Notification */}
       <AnimatePresence>
         {showToast && (
@@ -778,7 +777,7 @@ export default function App() {
           {[
             { id: 'dashboard', icon: LayoutDashboard, label: 'Feed' },
             { id: 'watchlist', icon: Bookmark, label: 'Watchlist' },
-            { id: 'lists', icon: List, label: 'Lists' },
+            { id: 'lists', icon: ListIcon, label: 'Lists' },
             { id: 'journal', icon: Book, label: 'Journal' },
             { id: 'goals', icon: Target, label: 'Goals' },
             { id: 'map', icon: Globe, label: 'Map' },
@@ -945,6 +944,5 @@ export default function App() {
         )}
       </AnimatePresence>
       </div>
-    </ErrorBoundary>
   );
 }
