@@ -35,10 +35,15 @@ export class ErrorBoundary extends Component<Props, State> {
             <p className="text-gray-500 font-bold uppercase tracking-widest text-xs leading-relaxed">
               The interface encountered a runtime error. This is often caused by missing data or a temporary rendering glitch.
             </p>
-            <div className="bg-zinc-900 rounded-2xl p-4 border border-white/5 text-left overflow-auto max-h-40">
-              <code className="text-[10px] text-red-400 font-mono break-all">
-                {this.state.error?.toString()}
-              </code>
+            <div className="bg-zinc-900/50 border border-white/5 rounded-2xl p-6 mb-8 w-full">
+              <p className="text-red-500 font-mono text-xs mb-4">
+                {this.state.error && this.state.error.toString()}
+              </p>
+              {this.state.errorInfo && (
+                <pre className="text-gray-500 font-mono text-[8px] leading-tight overflow-auto max-h-48 text-left">
+                  {this.state.errorInfo.componentStack}
+                </pre>
+              )}
             </div>
             <button
               onClick={() => window.location.reload()}
